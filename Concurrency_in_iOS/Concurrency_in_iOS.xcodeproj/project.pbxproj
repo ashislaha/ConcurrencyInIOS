@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		551702E4268EC5F500BDCC0E /* 6_Custom_Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551702E3268EC5F500BDCC0E /* 6_Custom_Operation.swift */; };
-		551702E6268ECA8600BDCC0E /* TestDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551702E5268ECA8600BDCC0E /* TestDispatchQueue.swift */; };
+		551702E6268ECA8600BDCC0E /* Semaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551702E5268ECA8600BDCC0E /* Semaphore.swift */; };
 		55CCAFB6240D537C00AE7345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CCAFB5240D537C00AE7345 /* AppDelegate.swift */; };
 		55CCAFB8240D537C00AE7345 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CCAFB7240D537C00AE7345 /* SceneDelegate.swift */; };
 		55CCAFBA240D537C00AE7345 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CCAFB9240D537C00AE7345 /* ViewController.swift */; };
@@ -18,7 +18,7 @@
 		55CCAFCB240D55A400AE7345 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CCAFCA240D55A400AE7345 /* NetworkLayer.swift */; };
 		55D8953E2413DFA80079126B /* GCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D8953D2413DFA80079126B /* GCDViewModel.swift */; };
 		55D895402413F0890079126B /* OperationQueueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D8953F2413F0890079126B /* OperationQueueViewModel.swift */; };
-		55F2F6A52761BB91001BC41B /* TestOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F2F6A42761BB91001BC41B /* TestOperationQueue.swift */; };
+		55F2F6A52761BB91001BC41B /* 8_OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F2F6A42761BB91001BC41B /* 8_OperationQueue.swift */; };
 		55FB07DB277EFC4100F506F4 /* 1_ConcurrencyTimePrfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB07DA277EFC4100F506F4 /* 1_ConcurrencyTimePrfile.swift */; };
 		55FB07DD277F096900F506F4 /* 2_DispatchQueueSyncAsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB07DC277F096900F506F4 /* 2_DispatchQueueSyncAsyncOperation.swift */; };
 		55FB07DF277F445C00F506F4 /* 3_DispatchQueue_QOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB07DE277F445C00F506F4 /* 3_DispatchQueue_QOS.swift */; };
@@ -30,7 +30,7 @@
 
 /* Begin PBXFileReference section */
 		551702E3268EC5F500BDCC0E /* 6_Custom_Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 6_Custom_Operation.swift; sourceTree = "<group>"; };
-		551702E5268ECA8600BDCC0E /* TestDispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDispatchQueue.swift; sourceTree = "<group>"; };
+		551702E5268ECA8600BDCC0E /* Semaphore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Semaphore.swift; sourceTree = "<group>"; };
 		55CCAFB2240D537C00AE7345 /* Concurrency_in_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concurrency_in_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CCAFB5240D537C00AE7345 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55CCAFB7240D537C00AE7345 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +42,7 @@
 		55CCAFCA240D55A400AE7345 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		55D8953D2413DFA80079126B /* GCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDViewModel.swift; sourceTree = "<group>"; };
 		55D8953F2413F0890079126B /* OperationQueueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationQueueViewModel.swift; sourceTree = "<group>"; };
-		55F2F6A42761BB91001BC41B /* TestOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOperationQueue.swift; sourceTree = "<group>"; };
+		55F2F6A42761BB91001BC41B /* 8_OperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 8_OperationQueue.swift; sourceTree = "<group>"; };
 		55FB07DA277EFC4100F506F4 /* 1_ConcurrencyTimePrfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 1_ConcurrencyTimePrfile.swift; sourceTree = "<group>"; };
 		55FB07DC277F096900F506F4 /* 2_DispatchQueueSyncAsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 2_DispatchQueueSyncAsyncOperation.swift; sourceTree = "<group>"; };
 		55FB07DE277F445C00F506F4 /* 3_DispatchQueue_QOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3_DispatchQueue_QOS.swift; sourceTree = "<group>"; };
@@ -89,6 +89,7 @@
 				55FB1D1627586C0600BB25F1 /* 5_RaceCondition.swift */,
 				551702E3268EC5F500BDCC0E /* 6_Custom_Operation.swift */,
 				55FB07E12780AE3A00F506F4 /* 7_Block_Operation.swift */,
+				55F2F6A42761BB91001BC41B /* 8_OperationQueue.swift */,
 				55CCAFB5240D537C00AE7345 /* AppDelegate.swift */,
 				55D8953D2413DFA80079126B /* GCDViewModel.swift */,
 				55CCAFC3240D537D00AE7345 /* Info.plist */,
@@ -97,8 +98,7 @@
 				55FB1D19275A516800BB25F1 /* PriorityInversion.swift */,
 				55CCAFC9240D53EA00AE7345 /* resources */,
 				55CCAFB7240D537C00AE7345 /* SceneDelegate.swift */,
-				551702E5268ECA8600BDCC0E /* TestDispatchQueue.swift */,
-				55F2F6A42761BB91001BC41B /* TestOperationQueue.swift */,
+				551702E5268ECA8600BDCC0E /* Semaphore.swift */,
 				55CCAFB9240D537C00AE7345 /* ViewController.swift */,
 			);
 			path = Concurrency_in_iOS;
@@ -196,11 +196,11 @@
 				55CCAFB8240D537C00AE7345 /* SceneDelegate.swift in Sources */,
 				55FB07DF277F445C00F506F4 /* 3_DispatchQueue_QOS.swift in Sources */,
 				55FB1D1A275A516800BB25F1 /* PriorityInversion.swift in Sources */,
-				55F2F6A52761BB91001BC41B /* TestOperationQueue.swift in Sources */,
+				55F2F6A52761BB91001BC41B /* 8_OperationQueue.swift in Sources */,
 				55FB07DB277EFC4100F506F4 /* 1_ConcurrencyTimePrfile.swift in Sources */,
 				55FB07DD277F096900F506F4 /* 2_DispatchQueueSyncAsyncOperation.swift in Sources */,
 				55FB1D152757741900BB25F1 /* 4_DispatchWorkItem_DispatchGroup.swift in Sources */,
-				551702E6268ECA8600BDCC0E /* TestDispatchQueue.swift in Sources */,
+				551702E6268ECA8600BDCC0E /* Semaphore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

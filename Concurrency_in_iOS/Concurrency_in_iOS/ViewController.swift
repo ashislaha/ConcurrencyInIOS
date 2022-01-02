@@ -65,7 +65,10 @@ class ViewController: UIViewController {
 		//AsyncOperation.test()
 		
 		// Test - 8: Block Operation
-		TestBlockOperation.test()
+		//TestBlockOperation.test()
+		
+		// Test - 9: Operation Queue
+		TestOperationQueue.test()
 	}
 }
 
