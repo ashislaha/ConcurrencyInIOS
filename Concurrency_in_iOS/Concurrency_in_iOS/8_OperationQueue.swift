@@ -26,7 +26,7 @@ class TestOperationQueue {
 	
 	func handleOperationsConcurrently() {
 		let operationQueue = OperationQueue()
-		operationQueue.maxConcurrentOperationCount = 2 // if we set 1, it will work like serial queue.
+		operationQueue.maxConcurrentOperationCount = 2 // if we set 1, it will work like serial dispatch queue.
 		
 		// underlying dispatchQueue:
 		// you can speficy an underlying dispatchQueue for an operation Queue. You must not specify main queue for this.
@@ -59,7 +59,7 @@ class TestOperationQueue {
 		
 		operation2.qualityOfService = .userInteractive
 		operation1.qualityOfService = .background
-		
+	
 		// waiting for completion --> waitUntilAllOperationsAreFinished()
 		// It is a blocking call and the current thread will be blocked until all the operations are completed.
 		// YOU must not call this method on Main Queue. If you want to use this method, use a private serial queue.
@@ -72,6 +72,9 @@ class TestOperationQueue {
 		operationQueue.addOperations([operation1, operation2], waitUntilFinished: false)
 		
 		print("[TestOperationQueue] after adding operations")
+		
+		// to cancel all operations
+		//operationQueue.cancelAllOperations()
 	}
 	
 	class func test() {
