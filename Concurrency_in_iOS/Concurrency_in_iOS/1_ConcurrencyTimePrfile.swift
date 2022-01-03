@@ -32,6 +32,7 @@ class ConcurrencyTimeProfile {
 	func executeConcurrently() {
 		
 		let time1 = DispatchTime.now()
+		
 		// concurrent
 		let concurrentQueue = DispatchQueue(label: "concurrent", attributes: .concurrent)
 		let dispatchGroup = DispatchGroup()
@@ -44,15 +45,9 @@ class ConcurrencyTimeProfile {
 			// assume - this is executing by thread 2
 			self.task2()
 		}
-		let time2 = DispatchTime.now()
-		
-		// ERROR as async work will execute concurrently and we do not know when both tasks are completed.
-		print("ERROR: time taken while executing concurrently = ", time1.distance(to: time2))
-		
+				
 		dispatchGroup.notify(queue: .global(qos: .default)) {
 			let completed = DispatchTime.now()
-			
-			// ERROR as async work will execute concurrently and we do not know when both tasks are completed.
 			print("[Concurrent Queue] time taken while executing concurrently = ", time1.distance(to: completed))
 		}
 	}

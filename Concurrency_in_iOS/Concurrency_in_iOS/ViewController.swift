@@ -61,14 +61,14 @@ class ViewController: UIViewController {
 		// Test - 6: Sync Operation
 		//SyncOperation.test()
 		
-		// Test - 7: Sync Operation
+		// Test - 7: Async Operation
 		//AsyncOperation.test()
 		
 		// Test - 8: Block Operation
 		//TestBlockOperation.test()
 		
 		// Test - 9: Operation Queue
-		TestOperationQueue.test()
+		//TestOperationQueue.test()
 	}
 }
 

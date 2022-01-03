@@ -17,26 +17,6 @@ class DispatchQueueSyncAsyncOperation {
 	func task2() {
 		sleep(2)
 	}
-	
-	func concurrentQueueSyncOperations() {
-		let time1 = DispatchTime.now()
-		
-		let concurrentQueue = DispatchQueue(label: "concurrent", attributes: .concurrent)
-		
-		// Caution: BLOCKING!!!
-		concurrentQueue.sync {
-			self.task1()
-		}
-		
-		// Caution: BLOCKING!!!
-		concurrentQueue.sync {
-			self.task2()
-		}
-		
-		let time2 = DispatchTime.now()
-		print("[SYNC concurrent] Time taken by the concurrent queue in sync operations = ", time1.distance(to: time2))
-	}
-	
 	func serialQueueOperations() {
 		let time1 = DispatchTime.now()
 		
@@ -57,10 +37,28 @@ class DispatchQueueSyncAsyncOperation {
 		}
 	}
 	
+	func concurrentQueueSyncOperations() {
+		let time1 = DispatchTime.now()
+		
+		let concurrentQueue = DispatchQueue(label: "concurrent", attributes: .concurrent)
+		
+		// Caution: BLOCKING!!!
+		concurrentQueue.sync {
+			self.task1()
+		}
+		
+		// Caution: BLOCKING!!!
+		concurrentQueue.sync {
+			self.task2()
+		}
+		
+		let time2 = DispatchTime.now()
+		print("[SYNC concurrent] Time taken by the concurrent queue in sync operations = ", time1.distance(to: time2))
+	}
 	
 	class func test() {
 		let obj = DispatchQueueSyncAsyncOperation()
-		obj.concurrentQueueSyncOperations()
 		obj.serialQueueOperations()
+		obj.concurrentQueueSyncOperations()
 	}
 }
