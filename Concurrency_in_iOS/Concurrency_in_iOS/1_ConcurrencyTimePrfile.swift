@@ -27,29 +27,25 @@ class ConcurrencyTimeProfile {
 		task2()
 		let time2 = DispatchTime.now()
 		print("[Main Serial] time taken while executing sequentially = ", time1.distance(to: time2))
+		
+		// we can check it in a different serial queue
+		
 	}
 	
 	func executeConcurrently() {
 		
-		let time1 = DispatchTime.now()
-		
 		// concurrent
 		let concurrentQueue = DispatchQueue(label: "concurrent", attributes: .concurrent)
-		let dispatchGroup = DispatchGroup()
 		
-		concurrentQueue.async(group: dispatchGroup) {
+		concurrentQueue.async {
 			// assume -- this is executing by thread 1
 			self.task1()
 		}
-		concurrentQueue.async(group: dispatchGroup) {
+		concurrentQueue.async {
 			// assume - this is executing by thread 2
 			self.task2()
 		}
 				
-		dispatchGroup.notify(queue: .global(qos: .default)) {
-			let completed = DispatchTime.now()
-			print("[Concurrent Queue] time taken while executing concurrently = ", time1.distance(to: completed))
-		}
 	}
 	
 	class func test() {

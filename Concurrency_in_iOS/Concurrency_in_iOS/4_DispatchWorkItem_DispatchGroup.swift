@@ -12,28 +12,54 @@ import Foundation
 // If it has sync opertions, we can directly assign it to DispatchGroup.
 class DispatchGroupWithWorkItems {
 	
-	let dispatchConcurrentQueue1 = DispatchQueue(label: "concurrentQueue1",
-												 qos: .utility,
-												 attributes: .concurrent)
-	
-	let dispatchConcurrentQueue2 = DispatchQueue.global(qos: .userInitiated)
+
 	let dispatchGroup = DispatchGroup()
+	
+	// test value
+	var evenValue: Int = 0
 	
 	// queue1 <-- [workitem1, workitem2] and queue2 <-- [workItem3, a closure]
 	func computeWorkItems() {
 		
-		let workItem1 = DispatchWorkItem {
+		let dispatchConcurrentQueue1 = DispatchQueue(label: "concurrentQueue1",
+													 qos: .utility,
+													 attributes: .concurrent)
+		var workItem1: DispatchWorkItem?
+		workItem1 = DispatchWorkItem {
+			
 			print("[DispatchGroupWithWorkItems] DispatchWorkItem 1")
+			
+			for i in 0...4 {
+				
+				if let wrkItem = workItem1, wrkItem.isCancelled {
+					print("work item is cancelled")
+					break
+				}
+				
+				print("workitem 1: ", i)
+				self.evenValue += 2
+				sleep(1)
+			}
 		}
-		dispatchConcurrentQueue1.async(group: dispatchGroup, execute: workItem1)
+		
+		workItem1?.notify(queue: .main) {
+			print("[DispatchGroupWithWorkItems] work item-1 is done. evenValue = \(self.evenValue)")
+		}
+		dispatchConcurrentQueue1.async(group: dispatchGroup, execute: workItem1!)
+	
 		
 		let workitem2 = DispatchWorkItem {
-			sleep(1)
 			print("[DispatchGroupWithWorkItems] DispatchWorkItem 2")
 		}
 		dispatchConcurrentQueue1.async(group: dispatchGroup, execute: workitem2)
 		
+		
+		
+		
+		
+		
 		// we can attach multiple queue into the same dispatch group.
+		let dispatchConcurrentQueue2 = DispatchQueue.global(qos: .userInitiated)
 		let workItem3 = DispatchWorkItem {
 			print("[DispatchGroupWithWorkItems] DispatchWorkItem 3")
 		}
@@ -50,7 +76,7 @@ class DispatchGroupWithWorkItems {
 			}
 		}
 		
-		dispatchGroup.notify(queue: .main) {
+		dispatchGroup.notify(queue: DispatchQueue.global()) {
 			print("Now all workitems are completed")
 		}
 		

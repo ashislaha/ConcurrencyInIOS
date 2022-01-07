@@ -11,7 +11,7 @@
 		551702E6268ECA8600BDCC0E /* Semaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551702E5268ECA8600BDCC0E /* Semaphore.swift */; };
 		55CCAFB6240D537C00AE7345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CCAFB5240D537C00AE7345 /* AppDelegate.swift */; };
 		55CCAFB8240D537C00AE7345 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CCAFB7240D537C00AE7345 /* SceneDelegate.swift */; };
-		55CCAFBA240D537C00AE7345 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CCAFB9240D537C00AE7345 /* ViewController.swift */; };
+		55CCAFBA240D537C00AE7345 /* 9_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CCAFB9240D537C00AE7345 /* 9_ViewController.swift */; };
 		55CCAFBD240D537C00AE7345 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55CCAFBB240D537C00AE7345 /* Main.storyboard */; };
 		55CCAFBF240D537D00AE7345 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55CCAFBE240D537D00AE7345 /* Assets.xcassets */; };
 		55CCAFC2240D537D00AE7345 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55CCAFC0240D537D00AE7345 /* LaunchScreen.storyboard */; };
@@ -34,7 +34,7 @@
 		55CCAFB2240D537C00AE7345 /* Concurrency_in_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concurrency_in_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CCAFB5240D537C00AE7345 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55CCAFB7240D537C00AE7345 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		55CCAFB9240D537C00AE7345 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		55CCAFB9240D537C00AE7345 /* 9_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 9_ViewController.swift; sourceTree = "<group>"; };
 		55CCAFBC240D537C00AE7345 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55CCAFBE240D537D00AE7345 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55CCAFC1240D537D00AE7345 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -90,6 +90,7 @@
 				551702E3268EC5F500BDCC0E /* 6_Custom_Operation.swift */,
 				55FB07E12780AE3A00F506F4 /* 7_Block_Operation.swift */,
 				55F2F6A42761BB91001BC41B /* 8_OperationQueue.swift */,
+				55CCAFB9240D537C00AE7345 /* 9_ViewController.swift */,
 				55CCAFB5240D537C00AE7345 /* AppDelegate.swift */,
 				55D8953D2413DFA80079126B /* GCDViewModel.swift */,
 				55CCAFC3240D537D00AE7345 /* Info.plist */,
@@ -99,7 +100,6 @@
 				55CCAFC9240D53EA00AE7345 /* resources */,
 				55CCAFB7240D537C00AE7345 /* SceneDelegate.swift */,
 				551702E5268ECA8600BDCC0E /* Semaphore.swift */,
-				55CCAFB9240D537C00AE7345 /* ViewController.swift */,
 			);
 			path = Concurrency_in_iOS;
 			sourceTree = "<group>";
@@ -189,7 +189,7 @@
 				551702E4268EC5F500BDCC0E /* 6_Custom_Operation.swift in Sources */,
 				55CCAFCB240D55A400AE7345 /* NetworkLayer.swift in Sources */,
 				55FB07E22780AE3A00F506F4 /* 7_Block_Operation.swift in Sources */,
-				55CCAFBA240D537C00AE7345 /* ViewController.swift in Sources */,
+				55CCAFBA240D537C00AE7345 /* 9_ViewController.swift in Sources */,
 				55CCAFB6240D537C00AE7345 /* AppDelegate.swift in Sources */,
 				55D895402413F0890079126B /* OperationQueueViewModel.swift in Sources */,
 				55FB1D1727586C0600BB25F1 /* 5_RaceCondition.swift in Sources */,

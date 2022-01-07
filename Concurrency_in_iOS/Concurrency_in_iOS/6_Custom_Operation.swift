@@ -14,7 +14,7 @@ import Foundation
 // SYNC
 class SyncOperation: Operation {
 	
-	// each operation has 3 state
+	// each operation has 4 states
 	// isReady
 	// isExecuting
 	// isFinished
@@ -47,7 +47,7 @@ class SyncOperation: Operation {
 			printStates(operation: obj)
 		}
 		
-		obj.cancel()
+		//obj.cancel()
 		obj.start()
 	}
 	
@@ -82,8 +82,8 @@ class AsyncOperation: Operation {
 		
 		willSet {
 			// property observer
-			willChangeValue(forKey: newValue.keyPath) // to state
 			willChangeValue(forKey: state.keyPath) // from state
+			willChangeValue(forKey: newValue.keyPath) // to state
 		}
 		
 		didSet {

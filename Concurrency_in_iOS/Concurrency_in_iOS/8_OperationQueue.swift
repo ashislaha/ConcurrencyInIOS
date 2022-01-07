@@ -48,7 +48,7 @@ class TestOperationQueue {
 		
 		let operation2 = BlockOperation {
 			print("[TestOperationQueue] starting operation 2")
-			sleep(2)
+			sleep(3)
 		}
 		operation2.completionBlock = {
 			print("[TestOperationQueue] completed operation 2")
@@ -59,19 +59,20 @@ class TestOperationQueue {
 		
 		operation2.qualityOfService = .userInteractive
 		operation1.qualityOfService = .background
-	
-		// waiting for completion --> waitUntilAllOperationsAreFinished()
-		// It is a blocking call and the current thread will be blocked until all the operations are completed.
-		// YOU must not call this method on Main Queue. If you want to use this method, use a private serial queue.
-		
-		//operationQueue.waitUntilAllOperationsAreFinished()
 		
 		// what if I am looking for few operations to complete not all of them?
 		// we can use addOperations(op, waitUntilFinish: true)
 		// CAUTION BLOCKING operation on current thread!!! when waitUntilFinished = true
 		operationQueue.addOperations([operation1, operation2], waitUntilFinished: false)
 		
+		// waiting for completion --> waitUntilAllOperationsAreFinished()
+		// It is a blocking call and the current thread will be blocked until all the operations are completed.
+		// YOU must not call this method on Main Queue. If you want to use this method, use a private serial queue.
+		
+		//operationQueue.waitUntilAllOperationsAreFinished()
+		
 		print("[TestOperationQueue] after adding operations")
+		
 		
 		// to cancel all operations
 		//operationQueue.cancelAllOperations()

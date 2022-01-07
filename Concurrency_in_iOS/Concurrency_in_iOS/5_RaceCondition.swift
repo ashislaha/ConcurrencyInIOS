@@ -14,50 +14,55 @@ import Foundation
 // we can solve the race condition with multiple technique ( like using a serial queue, semaphore, lock)
 // But the ultimate goal to solve the race condition is the shared resource must be accessed by a single thread,
 // concurrent access should be blocked.
+// we can solve this using multiple technique --> (1) lock (2) semaphore (3) serial queue (4) concurrent queue
 
 class RaceCondition {
 	
-	private var balance: Int = 0
-	private let concurrentQueue = DispatchQueue(label: "ConcurrentQ1",
-												qos: .userInitiated,
-												attributes: .concurrent)
-	private let concurrentQueue2 = DispatchQueue.global(qos: .userInitiated)
-	
-	private func credit(amount: Int) {
-		balance += amount
-		print(balance)
-	}
-	
-	private func debit(amount: Int) {
-		balance -= amount
-		print(balance)
-	}
-	
+	var balance: Int = 1000
+		
 	func update() {
-		// task - 1 (concurrent Q1)
+		
+		let concurrentQueue = DispatchQueue(label: "ConcurrentQ1",
+											qos: .userInitiated,
+											attributes: .concurrent)
+		
+		// task - 1 (thread 1)
+		concurrentQueue.async {
+			self.debit(amount: 600, processingType: "ATM")
+		}
+		
+		// task -- 2 (thread 2)
 		concurrentQueue.async { [weak self] in
-			self?.credit(amount: 10)
-		}
-		
-		// task -- 2 (concurrent Q1)
-		concurrentQueue.async { [weak self] in
-			self?.debit(amount: 10)
-		}
-		
-		// task - 3 (concurrent Q2)
-		concurrentQueue2.async { [weak self] in
-			self?.credit(amount: 15)
-		}
-		
-		// task - 4 (concurrent Q2)
-		concurrentQueue2.async { [weak self] in
-			self?.debit(amount: 5)
+			self?.debit(amount: 700, processingType: "Netbanking")
 		}
 	}
 	
 	class func test() {
 		let obj = RaceCondition()
 		obj.update()
+	}
+	
+	private func credit(amount: Int) {
+		balance = balance + amount
+		print(balance)
+	}
+	
+	private func debit(amount: Int, processingType: String = "UPI") {
+		
+		guard balance > amount else {
+			print("[RaceCondition] cannot withdraw insufficient balance - mode ", processingType)
+			return
+		}
+		
+		print("[RaceCondition] sufficient balance:", processingType)
+		
+		// Do some internal processing
+		Thread.sleep(forTimeInterval: 1)
+			
+		balance = balance - amount
+		
+		print("[RaceCondition] debited successfully \(amount) : mode -", processingType)
+		print("[RaceCondition] balance = ", balance)
 	}
 }
 
@@ -89,20 +94,15 @@ class RaceConditionSolution {
 // solution with concurrent queue
 class RaceConditionAnotherSolutionWithThreadBarrier {
 	
-	// sometimes shared resources have more complex logic in getters and setters than setting a variable modification.
-	// If we want to perform multiple read operation but single write operation,
 	// we can use a concurrent queue with barrier. With barrier, it will act like a Serial Queue.
-	
-	private let threadSafeConcurrentQueue = DispatchQueue(label: "Concurrent Queue", attributes: .concurrent)
+	private let threadSafeConcurrentQueue = DispatchQueue(label: "Concurrent Queue",
+														  attributes: .concurrent)
 	
 	private var _balance: Double = 0
 	var balance: Double {
 		
 		get {
-			// sync method to read the correct value but all other readers are operating in parallel.
-			threadSafeConcurrentQueue.sync {
-				return _balance
-			}
+			return _balance
 		}
 		
 		set {
