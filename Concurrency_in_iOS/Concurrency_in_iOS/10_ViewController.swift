@@ -69,5 +69,14 @@ class ViewController: UIViewController {
 		
 		// Test - 9: Operation Queue
 		//TestOperationQueue.test()
+		
+		// Test - 10: Async await
+		if #available(iOS 15.0, *) {
+			Task {
+				AsyncAwait.test()
+			}
+		} else {
+			// Fallback on earlier versions
+		}
 	}
 }
