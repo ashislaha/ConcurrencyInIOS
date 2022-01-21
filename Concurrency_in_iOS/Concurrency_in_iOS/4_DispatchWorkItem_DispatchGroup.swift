@@ -18,7 +18,6 @@ class DispatchGroupWithWorkItems {
 	// test value
 	var evenValue: Int = 0
 	
-	// queue1 <-- [workitem1, workitem2] and queue2 <-- [workItem3, a closure]
 	func computeWorkItems() {
 		
 		let dispatchConcurrentQueue1 = DispatchQueue(label: "concurrentQueue1",
@@ -42,20 +41,19 @@ class DispatchGroupWithWorkItems {
 			}
 		}
 		
-		workItem1?.notify(queue: .main) {
+		workItem1?.notify(queue: DispatchQueue.global(qos: .background)) {
 			print("[DispatchGroupWithWorkItems] work item-1 is done. evenValue = \(self.evenValue)")
 		}
-		dispatchConcurrentQueue1.async(group: dispatchGroup, execute: workItem1!)
+		
+		if let workItem = workItem1 {
+			dispatchConcurrentQueue1.async(group: dispatchGroup, execute: workItem)
+		}
 	
 		
 		let workitem2 = DispatchWorkItem {
 			print("[DispatchGroupWithWorkItems] DispatchWorkItem 2")
 		}
 		dispatchConcurrentQueue1.async(group: dispatchGroup, execute: workitem2)
-		
-		
-		
-		
 		
 		
 		// we can attach multiple queue into the same dispatch group.
@@ -65,16 +63,23 @@ class DispatchGroupWithWorkItems {
 		}
 		dispatchConcurrentQueue2.async(group: dispatchGroup, execute: workItem3)
 		
+		// NOT correct to notify the completion <-- as below block contains async code
 		dispatchConcurrentQueue2.async {
-			
 			self.dispatchGroup.enter()
+			print("[DispatchGroupWithWorkItems] Async work 4")
+			
 			DispatchQueue.global(qos: .background).async {
-				defer { self.dispatchGroup.leave() }
 				
-				sleep(1)
-				print("[DispatchGroupWithWorkItems] Async work 4")
+				defer {
+					self.dispatchGroup.leave()
+				}
+				
+				sleep(6)
+				print("[DispatchGroupWithWorkItems] Async work 4 completed")
 			}
 		}
+		
+		// Behavior: queue1 <-- [workitem1, workitem2] and queue2 <-- [workItem3, a closure]
 		
 		dispatchGroup.notify(queue: DispatchQueue.global()) {
 			print("Now all workitems are completed")
@@ -88,6 +93,7 @@ class DispatchGroupWithWorkItems {
 		let waitingState = dispatchGroup.wait(timeout: .now() + 3)
 		if waitingState == .timedOut {
 			print("Jobs did not finish in next 3 sec")
+			workItem1?.cancel()
 			
 		} else if waitingState == .success {
 			print("All jobs are completed before timeout")

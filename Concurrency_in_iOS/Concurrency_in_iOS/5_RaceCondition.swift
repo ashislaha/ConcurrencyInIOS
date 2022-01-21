@@ -19,7 +19,9 @@ import Foundation
 class RaceCondition {
 	
 	var balance: Int = 1000
-		
+	
+	let lock = NSLock()
+	
 	func update() {
 		
 		let concurrentQueue = DispatchQueue(label: "ConcurrentQ1",
@@ -42,12 +44,10 @@ class RaceCondition {
 		obj.update()
 	}
 	
-	private func credit(amount: Int) {
-		balance = balance + amount
-		print(balance)
-	}
-	
 	private func debit(amount: Int, processingType: String = "UPI") {
+		lock.lock()
+		
+		print("Current thread \(Thread.current)")
 		
 		guard balance > amount else {
 			print("[RaceCondition] cannot withdraw insufficient balance - mode ", processingType)
@@ -63,13 +63,19 @@ class RaceCondition {
 		
 		print("[RaceCondition] debited successfully \(amount) : mode -", processingType)
 		print("[RaceCondition] balance = ", balance)
+		
+		lock.unlock()
+	}
+	
+	private func credit(amount: Int) {
+		balance = balance + amount
+		print(balance)
 	}
 }
 
 
 
 // Solution with Serial Queue
-// Drawback: Read should be concurrent instead of serial.
 class RaceConditionSolution {
 	
 	private let threadSafeQueue = DispatchQueue(label: "Serial Queue")

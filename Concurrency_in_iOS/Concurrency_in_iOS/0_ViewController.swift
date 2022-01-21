@@ -13,36 +13,6 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		/*
-		let concurrentModel = OperationQueueConcurrencyModel()
-		// Sync
-		concurrentModel.solveConcurrencyOfSyncBlock()
-		
-		// Async
-		// approach - 1
-		concurrentModel.solveConcurrencyWithOperationQueue()
-		
-		// approach - 2
-		let gcdConcurrentModel = GCDConcurrencyModel()
-		gcdConcurrentModel.solveConcurrencyWithGCD()
-		*/
-		
-		// Test Queue
-		//let testQueue = TestQueue()
-		//testQueue.testSerialQueue()
-		//testQueue.testConcurrentQueue()
-		//print(testQueue.messages)
-		
-		//let raceCondition = RaceCondition()
-		//raceCondition.test()
-		
-		//let priorityInversion = ProirityInversion()
-		//priorityInversion.test()
-		
-		//let testBlockOperation = TestBlockOperation()
-		//testBlockOperation.test()
-		//testBlockOperation.testIsConcurrent()
-		
 		// Test - 1: Time profile:
 		//ConcurrencyTimeProfile.test()
 		
@@ -72,11 +42,53 @@ class ViewController: UIViewController {
 		
 		// Test - 10: Async await
 		if #available(iOS 15.0, *) {
-			Task {
 				AsyncAwait.test()
-			}
 		} else {
 			// Fallback on earlier versions
 		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+extension ViewController {
+	func notFocusing() {
+		/*
+		let concurrentModel = OperationQueueConcurrencyModel()
+		// Sync
+		concurrentModel.solveConcurrencyOfSyncBlock()
+		
+		// Async
+		// approach - 1
+		concurrentModel.solveConcurrencyWithOperationQueue()
+		
+		// approach - 2
+		let gcdConcurrentModel = GCDConcurrencyModel()
+		gcdConcurrentModel.solveConcurrencyWithGCD()
+		*/
+		
+		// Test Queue
+		//let testQueue = TestQueue()
+		//testQueue.testSerialQueue()
+		//testQueue.testConcurrentQueue()
+		//print(testQueue.messages)
+		
+		//let raceCondition = RaceCondition()
+		//raceCondition.test()
+		
+		//let priorityInversion = ProirityInversion()
+		//priorityInversion.test()
+		
+		//let testBlockOperation = TestBlockOperation()
+		//testBlockOperation.test()
+		//testBlockOperation.testIsConcurrent()
 	}
 }

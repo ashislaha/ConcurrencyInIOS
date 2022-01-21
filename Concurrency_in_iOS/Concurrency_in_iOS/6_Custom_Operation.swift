@@ -27,6 +27,7 @@ class SyncOperation: Operation {
 		SyncOperation.printStates(operation: self)
 		
 		sleep(1) // doing some heavy task taking 1 sec of time
+		
 	}
 	
 	override func cancel() {
@@ -43,11 +44,11 @@ class SyncOperation: Operation {
 		
 		// completion block should be defined before start() if main() contains sync operations.
 		obj.completionBlock = {
-			print("\n[Sync Operation] is completed.")
+			print("\n[Sync Operation] is completed by completing the task: \(!obj.isCancelled)")
 			printStates(operation: obj)
 		}
 		
-		//obj.cancel()
+		obj.cancel()
 		obj.start()
 	}
 	
@@ -136,6 +137,8 @@ class AsyncOperation: Operation {
 	
 	override func main() {
 		
+		print("is main thread", Thread.isMainThread)
+		
 		print("\n[Async operation] main is executing")
 		
 		guard !isCancelled
@@ -151,6 +154,7 @@ class AsyncOperation: Operation {
 			defer {
 				AsyncOperation.printStates(operation: self)
 				self.state = .finished
+				print("\n Completed async opertion on main()")
 			}
 			
 			if error != nil {

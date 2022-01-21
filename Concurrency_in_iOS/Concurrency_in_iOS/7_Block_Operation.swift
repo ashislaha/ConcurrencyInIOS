@@ -38,7 +38,7 @@ class TestBlockOperation {
 	
 	class func test() {
 		let obj = TestBlockOperation()
-		obj.isConcurrentTesting()
+		//obj.isConcurrentTesting()
 		
 		obj.orderOperations()
 	}
@@ -49,12 +49,17 @@ class TestBlockOperation {
 	
 	func orderOperations() {
 		let blockOperation1 = BlockOperation {
+			
 			print("[BlockOperation] operation 1: Do multiplication / division first")
+		}
+		
+		blockOperation1.addExecutionBlock {
+			print("task2")
 		}
 		
 		blockOperation1.completionBlock = {
 			print("[BlockOperation] operation 1: Completed")
-			//self.blockOperation2?.start()
+			self.blockOperation2?.start()
 		}
 		
 		blockOperation2 = BlockOperation {
@@ -69,12 +74,12 @@ class TestBlockOperation {
 		
 		// when to start the operations?
 		// If the block operations are doing sync operation then we can start sequentially.
-		blockOperation1.start()
-		blockOperation2?.start()
+		//blockOperation1.start()
+		//blockOperation2?.start()
 		
 		// If 2nd task is dependent on result of 1st operation then 1st operation is async,
 		// then 2nd task should not start immediately, rather than it should start when 1st task is completed.
-		//blockOperation1.start()
+		blockOperation1.start()
 	}
 	
 }

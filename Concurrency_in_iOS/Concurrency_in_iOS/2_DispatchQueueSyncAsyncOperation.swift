@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 
 class DispatchQueueSyncAsyncOperation {
 	
@@ -37,8 +38,16 @@ class DispatchQueueSyncAsyncOperation {
 		}
 	}
 	
+	// recommended way: another way to measure how much time a code block is taking.
+	let pointOfInterest = OSLog(subsystem: "DispatchQueue", category: .pointsOfInterest)
+	
 	func concurrentQueueSyncOperations() {
 		let time1 = DispatchTime.now()
+		
+		os_signpost(.begin, log: pointOfInterest, name: "concurrentQueueSyncOperations")
+		defer {
+			os_signpost(.end, log: pointOfInterest, name: "concurrentQueueSyncOperations")
+		}
 		
 		let concurrentQueue = DispatchQueue(label: "concurrent", attributes: .concurrent)
 		

@@ -21,6 +21,8 @@ import Foundation
 // If we use only DispatchQueue then we will create a nested closure and solve it
 // even if for Operation we need to put the right dependency and call the next api once we receive the result.
 
+// Async await can throw an error/exception like a sync func does. That is extra advantage over async method.
+
 // This can be solved using async await easily
 
 // Case -1: Understand a func having async method internally
@@ -41,7 +43,8 @@ class AsyncAwait {
 				return
 			}
 			
-			completionHandler((200...299).contains(httpResponse.statusCode))
+			let isSuccess = (200...299).contains(httpResponse.statusCode)
+			completionHandler(isSuccess)
 		}
 		task.resume()
 	}
@@ -52,6 +55,7 @@ class AsyncAwait {
 		
 		var isServerON = false
 		do {
+			
 			let (_/* data */, serverResponse) = try await URLSession.shared.data(from: url, delegate: nil)
 			
 			guard let httpResponse = serverResponse as? HTTPURLResponse else { return false }
@@ -74,8 +78,9 @@ class AsyncAwait {
 		// we must call a async func inside an another async func.
 		// to avoid this we can use Task closure.
 		Task {
+			print("is main thread", Thread.isMainThread)
 			let isServerOn = await obj.heartbeatCheck(url: url)
-			print("[Async Await] Microsoft server is ON: \(isServerOn)")
+			print("\n\n[Async Await] Microsoft server is ON: \(isServerOn)")
 			
 			if isServerOn {
 				let githubURL = URL(string: "https://www.github.com")!

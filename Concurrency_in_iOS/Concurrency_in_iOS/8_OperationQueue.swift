@@ -34,7 +34,7 @@ class TestOperationQueue {
 		// https://developer.apple.com/documentation/foundation/nsoperationqueue/1415344-underlyingqueue
 		// default queue is global dispatchQueue with .default QoS
 		
-		//operationQueue.underlyingQueue = DispatchQueue.global(qos: .userInteractive)
+		operationQueue.underlyingQueue = DispatchQueue.global(qos: .background)
 		
 		
 		let operation1 = BlockOperation {
@@ -58,12 +58,14 @@ class TestOperationQueue {
 		// the quality of service of an operationQueue can be overriden by the operation's QOS.
 		
 		operation2.qualityOfService = .userInteractive
-		operation1.qualityOfService = .background
+		operation1.qualityOfService = .utility
 		
 		// what if I am looking for few operations to complete not all of them?
 		// we can use addOperations(op, waitUntilFinish: true)
 		// CAUTION BLOCKING operation on current thread!!! when waitUntilFinished = true
 		operationQueue.addOperations([operation1, operation2], waitUntilFinished: false)
+		
+		
 		
 		// waiting for completion --> waitUntilAllOperationsAreFinished()
 		// It is a blocking call and the current thread will be blocked until all the operations are completed.

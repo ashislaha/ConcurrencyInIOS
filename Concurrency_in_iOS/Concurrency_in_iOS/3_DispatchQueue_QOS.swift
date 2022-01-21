@@ -10,7 +10,7 @@ import Foundation
 
 class DispatchQueueQOS {
 	let queue1 = DispatchQueue.global(qos: .userInteractive)
-	let queue2 = DispatchQueue.global(qos: .utility)
+	let queue2 = DispatchQueue.global(qos: .background)
 	
 	func queuePriorityUpdate() {
 		
@@ -19,7 +19,7 @@ class DispatchQueueQOS {
 		}
 		
 		queue1.async {
-			print("[DispatchQueueQOS] doing some calculation for user interaction on UI")
+			print("[DispatchQueueQOS] Doing some calculation for user interaction on UI")
 		}
 		
 	}
