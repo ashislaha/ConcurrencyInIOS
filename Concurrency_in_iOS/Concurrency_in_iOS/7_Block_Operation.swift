@@ -24,21 +24,21 @@ class TestBlockOperation {
 			}
 		}
 		
+		let date1 = Date()
 		blockOperaiton.completionBlock = {
 			print("[TestBlockOperation] all tasks are completed.")
+			let date2 = Date()
+			
+			let diff = date1.distance(to: date2)
+			print("time taken:", diff)
 		}
 		
-		let date1 = Date()
 		blockOperaiton.start()
-		let date2 = Date()
-		
-		let diff = date1.distance(to: date2)
-		print(diff)
 	}
 	
 	class func test() {
 		let obj = TestBlockOperation()
-		//obj.isConcurrentTesting()
+		obj.isConcurrentTesting()
 		
 		obj.orderOperations()
 	}

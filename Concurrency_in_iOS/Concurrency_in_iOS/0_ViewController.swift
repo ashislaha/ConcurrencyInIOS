@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 		
 		// Test - 10: Async await
 		if #available(iOS 15.0, *) {
-				AsyncAwait.test()
+			AsyncAwait.test()
 		} else {
 			// Fallback on earlier versions
 		}
